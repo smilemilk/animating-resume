@@ -14,5 +14,10 @@ module.exports = {
     source: 'src',
     img: 'src',
     image: 'xlink:href'
-  }
+  },
+  postcss: [
+    require('autoprefixer')({
+      browsers: ['last 2 version']
+    })
+  ]
 }

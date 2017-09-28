@@ -1,2 +1,7 @@
 build/*.js
 config/*.js
+src/main.js
+src/components/ResumeEditor.vue
+src/Mobile.vue
+src/App.vue
+

@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
-    <StyleEditor ref="styleEditor" :code="currentStyle"></StyleEditor>
-    <ResumeEditor ref="resumeEditor" :markdown="currentMarkdown" :enableHtml="enableHtml"></ResumeEditor>
-  </div>
+    <div id="app">
+        <StyleEditor ref="styleEditor" :code="currentStyle"></StyleEditor>
+        <ResumeEditor ref="resumeEditor" :markdown="currentMarkdown" :enableHtml="enableHtml"></ResumeEditor>
+    </div>
 </template>
 
 <script>
@@ -32,37 +32,48 @@
 /* 白色背景太单调了，我们来点背景 */
 html {
   color: rgb(222,222,222);
-   background: rgb(0,34,64);
+  background: rgb(0,34,64);
 }
 /* 文字离边框太近了 */
 .styleEditor {
   padding: .5em;
   border: 1px solid;
-  margin: .5em;
   overflow: auto;
-  width: 45vw; height: 90vh;
+  width: 90vw;
+  margin: 2.5vh 5vw;
+  height: 90vh;
+}
+/* 太高了 */
+.styleEditor {
+  height: 45vh;
 }
 /* 代码高亮 */
-.token.selector{ color: rgb(68,239,0); }
-.token.property{ color: rgb(211,197,9); }
-.token.punctuation{ color: rgb(202,136,27); }
-.token.function{ color: rgb(196,105,188); }
+.token.selector{
+  color: rgb(68,239,0);
+}
+.token.property{
+  color: rgb(211,197,9);
+}
+.token.punctuation{
+  color: color: rgb(202,136,27);
+}
+.token.function{
+  color: rgb(196,105,188);
+}
 /* 加点 3D 效果呗 */
 html{
   perspective: 1000px;
 }
 .styleEditor {
   position: fixed; left: 0; top: 0;
-  -webkit-transition: none;
-  transition: none;
-  -webkit-transform: rotateY(10deg) translateZ(-100px) ;
-          transform: rotateY(10deg) translateZ(-100px) ;
+  transform: rotateX(-10deg) translateZ(-50px) ;
 }
 /* 接下来我给自己准备一个编辑器 */
 .resumeEditor{
-  position: fixed; right: 0; top: 0;
-  padding: .5em;  margin: .5em;
-  width: 48vw; height: 90vh;
+  position: fixed;
+  top: 50%; left: 0;
+  padding: .5em;  margin: 2.5vh;
+  width: 95vw; height: 45vh;
   border: 1px solid;
   background: white; color: #222;
   overflow: auto;
@@ -137,6 +148,9 @@ html{
       showHtml: function () {
         return new Promise((resolve, reject) => {
           this.enableHtml = true
+          this.$nextTick(() => {
+            this.$refs.resumeEditor.goTop()
+          })
           resolve()
         })
       },
@@ -191,15 +205,16 @@ html{
 </script>
 
 <style scoped>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  html {
-    min-height: 100vh;
-  }
-  *{
-    box-sizing: border-box;
-  }
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh; position: relative;
+    }
+    html {
+        min-height: 100vh;
+    }
+    *{
+        box-sizing: border-box;
+    }
 </style>
