@@ -15,3 +15,5 @@ selenium-debug.log
 *.njsproj
 *.sln
 _config.yml
+.idea/workspace.xml
+

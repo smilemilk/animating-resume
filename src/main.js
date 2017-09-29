@@ -8,8 +8,8 @@ var width = document.documentElement.clientWidth
 new Vue({
   el: '#app',
   // template: '<App/>',
-  // components: { App }
+  // components: { App }  //vue1.0的写法
   render: h => h(width > 500 ? App : Mobile)
 })
-console.log(h)
+
 
